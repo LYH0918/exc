@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script type="text/javascript">
+	class obj{
+		constructor(year,edit,other){
+			this._year = year
+			this.edit = edit
+			this._other = other
+		}
+	}
+	let other = {
+		name:'tom',
+		sex:'man'
+	}
+	let book = new obj(1993,0,other)
+	Object.defineProperty(book,"year",{
+		get:function(){
+			return this._year
+		},
+		set:function(newYear){
+			if(newYear!==book._year){
+				this._year = newYear
+				this.edit++
+			}
+		}
+	});
+	Object.defineProperty(book,'other',{
+		get:function(){
+			return this._other
+		},
+		set:function(value){
+			if(value.name=='tom')
+			this._other = {name:'lily',sex:'woman'}
+			else
+			this._other = {name:'tom',sex:'man'}
+		}
+	})
+	function a(){
+		book.year++
+		text.innerHTML = "出版年份为："+book._year+",更改了"+book.edit+'次。'
+	}
+	function b(){
+		console.log(book)
+		book.other = {...book._other}
+		let name = book._other.name=='tom'?'汤姆':'莉莉'
+		let sex = book._other.sex=='man'?'男':'女'
+		console.log(name,sex)
+		other1.innerHTML = "名字为："+name+"</br>性别为："+sex
+	}
+  </script>
+  <p id="text"></p>
+  <p id='other1'></p>
+  <button onClick="a()">click</button>
+  <button onClick="b()">other</button>
+ </body>
+</html>
