@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script type="text/javascript">
+	let pai = [1,2,3,4,5,6,7,8,9,10,'J','Q','K'];
+	let uu = ['K','Q','J',10,9,8,7,6,5,4,3,2,1]
+	let b = []
+	document.write('有 A-K 13张扑克牌的牌组，先出牌然后将出牌后最顶部的牌放到最底部，直至手上没牌。假设我们无牌后出牌的顺序为：',...uu,'现在开始倒着操作，直至还原牌组本来的顺序!</br></br>')
+	function a(arr){
+		if(b.length<2){
+			b = arr.splice(arr.length-2,2)
+			document.write('先摸最后出的两张扑克为',...b,'</br></br>')
+		}
+		
+		let c = arr.splice(arr.length-1,1)[0]
+		document.write('抽牌为：'+c,'</br>')
+		b.push(c)
+		if(arr.length>0){
+			let o =b.splice(0,1)[0]
+			b.push(o)
+			document.write('将最底部的牌：'+o+'移到最顶部','</br>')
+			document.write('继续重复的操作','</br>')
+			document.write('现在桌面牌组为：',...arr,'</br>手上的牌组为:',...b,'</br></br>')
+			a(arr)
+		}else{
+			document.write('桌面已没牌，抽牌结束','</br>')
+			return b
+		}
+	}
+	//a(pai)
+	a(uu)
+	document.write("扑克牌原本的顺序为：",...(b.reverse()),'</br></br>')
+  </script>
+ </body>
+</html>
