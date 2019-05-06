@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script type="text/javascript">
+	let a = function(url){
+		return new Promise((res,rej)=>{
+			if(url){
+				res(url)
+			}else{
+				rej('抛出错误')
+			}
+		})
+	}
+	a('www.baidu.com').then((data)=>{
+		console.log(data)
+		return a('www.youku.com')
+	}).then((data)=>{
+		console.log(data)
+		return a()
+	}).catch((err)=>{
+		console.log(err)	
+	})
+  </script>
+ </body>
+</html>
