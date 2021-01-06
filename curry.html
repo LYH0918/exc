@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+	// 柯里化小测试
+	const currying = function() {
+		const args = [...arguments]
+		let result = 0
+		const handleFun = function() {
+			result += [...arguments].reduce((a,b) => a+b)
+			return handleFun
+		}
+		handleFun.toString = function() {
+			return result
+		}
+		handleFun.getValue = function() {
+			return result
+		}
+		args.forEach(item => {
+			result = handleFun(item) - 0
+		})
+		return handleFun
+	}
+	console.log(currying(1,2,3,4,5).getValue())
+	console.log(currying(1)(2)(3)(4))
+	console.log(currying(1,2)(3,4)(5)(6)(7,8,9))
+  </script>
+ </body>
+</html>
